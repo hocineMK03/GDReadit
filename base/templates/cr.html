@@ -1,0 +1,13 @@
+
+{% extends 'main.html'%}
+
+{%block content%}
+
+<form
+  action="." method="post" 
+>
+{%csrf_token%}
+<input type="text" name="q" placeholder="name" />
+<input  type='submit' value='save' />
+</form>
+{%endblock content %}

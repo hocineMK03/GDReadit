@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+{% block content%}
+<p>{{places1.desc}}</p>
+
+
+{% for m in message1%}
+<hr>
+<a href=""><span>@{{m.host}} --{{m.date_created}}</span></a>
+<p>{{m.body}}</p>
+
+
+{%endfor%}
+{%endblock content%}

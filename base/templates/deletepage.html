@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{%block content %}
+
+<form method="POST">
+    {% csrf_token%}
+    <p>place name : {{p.name}}</p>
+    <h2>are you sure to delete this place ? </h2>
+    <input type="submit" value="delete"> 
+    <a href=".."> cancel</a>
+</form>
+{%endblock content%}

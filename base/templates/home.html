@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{%block content %}
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+      
+    }
+</style>
+<div class="home-container">
+    <div>
+<a href="{% url 'placecreate' %}"><h3>create place</h3> </a>
+
+<h3 style="color:magenta;">Topics :</h3>
+<a href="{% url 'home'%}"> all</a>
+{% for n in place%}
+<div>
+<a href="{% url 'home'%}?q={{n.name}}"> {{n.name}}</a></div>
+{% endfor%}
+</div>
+<div>
+{%for p in place %}
+<div>
+    <hr>
+    {{p.user}}
+    <div>
+     --  <a href="{% url 'messagepage' p.id %}">{{p.name}}</a> 
+    <p> created the <span>{{p.created}}</span></p>
+    {% if user == p.user %}
+    <a href="{%url 'deletepage' p.id %}">delete</a>
+    {%else%}
+    {% endif%}
+    </div>
+    <div>
+       
+    </div>
+</div>
+{% endfor %}
+</div>
+
+</div>
+{% endblock content %}
