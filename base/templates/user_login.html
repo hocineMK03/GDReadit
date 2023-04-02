@@ -40,14 +40,7 @@ method="post"
 method="post"
 >
 {% csrf_token %}
-<label>
-    Username :
-</label>
-<input type="text" name="username"  placeholder="username" required/>
-<label>
-    password :
-</label>
-<input type="password" name="password"  placeholder="password" required/>
+{{usercreation.as_p}}
 
 <input type="submit" value="register"/>
 </form>

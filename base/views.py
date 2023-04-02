@@ -5,6 +5,7 @@ from .forms import Placeform,placeformhtml
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -102,7 +103,16 @@ def user_logout(request):
 
 def user_register(request):
   page=False
+  usercreation=UserCreationForm()
+  if request.method=='POST':
+    usercreation=UserCreationForm(request.POST)
+    if usercreation.is_valid():
+      user=usercreation.save(commit=False)
+      user.save()
+      login(request,user)
+      return redirect('home')
   context={
+    'usercreation':usercreation,
     'page':page,
   }
   return render(request,'user_login.html',context)
