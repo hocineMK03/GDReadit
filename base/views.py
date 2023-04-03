@@ -94,8 +94,11 @@ def user_login(request):
     username = request.POST.get('username', '')
     password=request.POST.get('password', '')
   
-    user=User.objects.get(username=username)
-    print(username)
+    try:
+      user=User.objects.get(username=username)
+      print(username)
+    except:
+      return redirect('home')
         
    
        
