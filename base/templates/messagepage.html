@@ -5,9 +5,23 @@
 
 {% for m in message1%}
 <hr>
-<a href=""><span>@{{m.host}} --{{m.date_created}}</span></a>
-<p>{{m.body}}</p>
+
+<div>
+<div>
+    <a href=""><span>@{{m.host}} --{{m.date_created}}</span></a> 
+
+</div>
+<p style="font-size: 120%;">{{m.body}}</p>
+</div>
+
+
 
 
 {%endfor%}
+
+<form method="POST">
+    {%csrf_token%}
+<input type="text"  name="msg" placeholder="send" />
+
+</form>
 {%endblock content%}

@@ -31,10 +31,27 @@ def test(request):
 def messagepage(request,pk):
   places1=get_object_or_404(Place,id=pk)
   messages1=places1.messages_set.all()
+  h=""
+  if request.method=='POST':
+    h=request.user
+    msg=Messages.objects.create(
+      host=request.user,
+      where=places1,
+      body=request.POST.get('msg')
+    )
+    m=request.user
+    return redirect('messagepage',pk=places1.id)
+    
+    
+ 
+
+
   context={ 
   'places1':places1,
-  'message1':messages1
+  'message1':messages1,
+  'h':h
   }
+
   return render(request,'messagepage.html',context)
 
 @login_required(login_url="userlogin")
